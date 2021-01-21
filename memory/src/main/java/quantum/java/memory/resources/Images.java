@@ -18,6 +18,8 @@ public class Images {
         try {
             BufferedImage image = ImageIO.read(this.getClass().getResourceAsStream("BlauerEngelSiegel.png"));
             images.put("BlauerEngelSiegel",image);
+            image = ImageIO.read(this.getClass().getResourceAsStream("BlauerEngelText.png"));
+            images.put("BlauerEngelText",image);
 		} catch (IOException e) {
 			e.printStackTrace();
         }
