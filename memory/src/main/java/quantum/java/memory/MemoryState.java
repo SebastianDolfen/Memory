@@ -34,25 +34,8 @@ public class MemoryState extends GameState{
 		g.setColor(new Color(64, 64, 80));
         g.fillRect(0, 0, GamePanel.screenSize.width, GamePanel.screenSize.height);
         
-		
-		g.drawImage(images.images.get("BlauerEngelSiegel").getScaledInstance(Resize(300), Resize(300), 4), GamePanel.screenSize.width/2+widthpos[1], GamePanel.screenSize.height/2+heightpos[0], null);
-		g.drawImage(images.images.get("BlauerEngelSiegel").getScaledInstance(Resize(300), Resize(300), 4), GamePanel.screenSize.width/2+widthpos[2], GamePanel.screenSize.height/2+heightpos[0], null);
-		g.drawImage(images.images.get("BlauerEngelSiegel").getScaledInstance(Resize(300), Resize(300), 4), GamePanel.screenSize.width/2+widthpos[3], GamePanel.screenSize.height/2+heightpos[0], null);
-
-		g.drawImage(images.images.get("BlauerEngelSiegel").getScaledInstance(Resize(300), Resize(300), 4), GamePanel.screenSize.width/2+widthpos[0], GamePanel.screenSize.height/2+heightpos[1], null);
-		g.drawImage(images.images.get("BlauerEngelSiegel").getScaledInstance(Resize(300), Resize(300), 4), GamePanel.screenSize.width/2+widthpos[1], GamePanel.screenSize.height/2+heightpos[1], null);
-		g.drawImage(images.images.get("BlauerEngelSiegel").getScaledInstance(Resize(300), Resize(300), 4), GamePanel.screenSize.width/2+widthpos[2], GamePanel.screenSize.height/2+heightpos[1], null);
-		g.drawImage(images.images.get("BlauerEngelSiegel").getScaledInstance(Resize(300), Resize(300), 4), GamePanel.screenSize.width/2+widthpos[3], GamePanel.screenSize.height/2+heightpos[1], null);
-
-		g.drawImage(images.images.get("BlauerEngelSiegel").getScaledInstance(Resize(300), Resize(300), 4), GamePanel.screenSize.width/2+widthpos[0], GamePanel.screenSize.height/2+heightpos[2], null);
-		g.drawImage(images.images.get("BlauerEngelSiegel").getScaledInstance(Resize(300), Resize(300), 4), GamePanel.screenSize.width/2+widthpos[1], GamePanel.screenSize.height/2+heightpos[2], null);
-		g.drawImage(images.images.get("BlauerEngelSiegel").getScaledInstance(Resize(300), Resize(300), 4), GamePanel.screenSize.width/2+widthpos[2], GamePanel.screenSize.height/2+heightpos[2], null);
-		g.drawImage(images.images.get("BlauerEngelSiegel").getScaledInstance(Resize(300), Resize(300), 4), GamePanel.screenSize.width/2+widthpos[3], GamePanel.screenSize.height/2+heightpos[2], null);
-
-		g.drawImage(images.images.get("BlauerEngelSiegel").getScaledInstance(Resize(300), Resize(300), 4), GamePanel.screenSize.width/2+widthpos[0], GamePanel.screenSize.height/2+heightpos[3], null);
-		g.drawImage(images.images.get("BlauerEngelSiegel").getScaledInstance(Resize(300), Resize(300), 4), GamePanel.screenSize.width/2+widthpos[1], GamePanel.screenSize.height/2+heightpos[3], null);
-		g.drawImage(images.images.get("BlauerEngelSiegel").getScaledInstance(Resize(300), Resize(300), 4), GamePanel.screenSize.width/2+widthpos[2], GamePanel.screenSize.height/2+heightpos[3], null);
-		g.drawImage(images.images.get("BlauerEngelSiegel").getScaledInstance(Resize(300), Resize(300), 4), GamePanel.screenSize.width/2+widthpos[3], GamePanel.screenSize.height/2+heightpos[3], null);
+		g.setColor(green);
+		g.drawRect(0, 0, 300, 300);
 	}
 
 	@Override
