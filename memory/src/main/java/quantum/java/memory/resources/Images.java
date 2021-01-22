@@ -17,7 +17,19 @@ public class Images {
         addImage("BlauerEngelSiegel", "BlauerEngelSiegel.png");
         addImage("BlauerEngelText", "BlauerEngelText.png");
         addImage("EuBioSiegel", "EuBioSiegel.png");
-        
+        addImage("EuBioText", "EuBioText.png");
+        addImage("FairtradeSiegel", "FairtradeSiegel.png");
+        addImage("FairtradeText","FairtradeText.png");
+        addImage("FairwearSiegel", "FairwearSiegel.png");
+        addImage("FairwearText", "FairwearText.png");
+        addImage("FscSiegel", "FscSiegel.png");
+        addImage("FscText","FscText.png");
+        addImage("MscSiegel", "MscSiegel.png");
+        addImage("MscText","MscText.png");
+        addImage("NaturlandSiegel", "NaturlandSiegel.png");
+        addImage("NaturlandText", "NaturlandText.png");
+        addImage("PefcSiegel", "PefcSiegel.png");
+        addImage("PefcText", "PefcText.png");
     }
 
     private void addImage(String name,String data){
