@@ -35,7 +35,7 @@ public class MemoryState extends GameState{
         g.fillRect(0, 0, GamePanel.screenSize.width, GamePanel.screenSize.height);
         
 		g.setColor(green);
-		g.drawRect(0, 0, 300, 300);
+		g.fillRect((GamePanel.screenSize.width/2)-150, (GamePanel.screenSize.height/2)-150, 300, 300);
 	}
 
 	@Override

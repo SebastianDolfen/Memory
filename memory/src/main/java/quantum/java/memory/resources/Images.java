@@ -14,22 +14,18 @@ public class Images {
     public Map<String,BufferedImage> images = new HashMap<String,BufferedImage>();
     
     public Images(){
+        addImage("BlauerEngelSiegel", "BlauerEngelSiegel.png");
+        addImage("BlauerEngelText", "BlauerEngelText.png");
+        addImage("EuBioSiegel", "EuBioSiegel.png");
+        
+    }
+
+    private void addImage(String name,String data){
         try {
-            BufferedImage image = ImageIO.read(this.getClass().getResourceAsStream("BlauerEngelSiegel.png"));
-            images.put("BlauerEngelSiegel",image);
-            image = ImageIO.read(this.getClass().getResourceAsStream("BlauerEngelText.png"));
-            images.put("BlauerEngelText",image);
+            BufferedImage image = ImageIO.read(this.getClass().getResourceAsStream(data));
+            images.put(name,image);
 		} catch (IOException e) {
 			e.printStackTrace();
         }
-        try {
-            BufferedImage image = ImageIO.read(this.getClass().getResourceAsStream("EuBioSiegel.png"));
-            images.put("EuBioSiegel",image);
-            image = ImageIO.read(this.getClass().getResourceAsStream("EuBioText.png"));
-            images.put("EuBioText",image);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        
     }
 }
