@@ -30,6 +30,7 @@ public class Images {
         addImage("NaturlandText", "NaturlandText.png");
         addImage("PefcSiegel", "PefcSiegel.png");
         addImage("PefcText", "PefcText.png");
+        addImage("Rückseite","Rueckseite.png");
     }
 
     private void addImage(String name,String data){
