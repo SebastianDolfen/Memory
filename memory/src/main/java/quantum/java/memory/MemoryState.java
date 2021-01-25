@@ -1,6 +1,7 @@
 package quantum.java.memory;
 
 import java.awt.Color;
+import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.event.KeyEvent;
 import java.util.ArrayList;
@@ -29,6 +30,10 @@ public class MemoryState extends GameState{
 
 	boolean error = false;
 	boolean win = false;
+	boolean pause = false;
+
+	String[] pauseOptions = {"Fortfahren","Beenden"};
+	int currentPauseSelection = 0;
 
 	int restCards = 16;
 
@@ -69,6 +74,8 @@ public class MemoryState extends GameState{
 
 		widthpos = new ArrayList<Integer>();
 		heightpos = new ArrayList<Integer>();
+
+		
 
 		widthpos.add(Resize(-400));
 		widthpos.add(Resize(0));
@@ -125,13 +132,12 @@ public class MemoryState extends GameState{
 		}
 		if (restCards==0) {
 			win = true;
-			gsm.states.pop();
 		}
 	}
 
 	@Override
 	public void draw(Graphics g) {
-		g.setColor(new Color(64, 64, 80));
+		g.setColor(new Color(37, 42, 51));
 		g.fillRect(0, 0, GamePanel.screenSize.width, GamePanel.screenSize.height);
 		if (error) {
 			g.setColor(new Color(191,97,106));
@@ -143,76 +149,149 @@ public class MemoryState extends GameState{
         for (int i = 0; i < karten.size(); i++) {
 			karten.get(i).draw(g);
 		}
+		if(pause){
+			g.setColor(new Color(0,0,0,150));
+			g.fillRect(0, 0, GamePanel.screenSize.width, GamePanel.screenSize.height);
+			
+			g.setColor(new Color(50,56,68));
+			g.fillRect(0, (GamePanel.screenSize.height/2)-Resize(400), GamePanel.screenSize.width, Resize(800));
+			for (int i = 0; i < pauseOptions.length; i++) {
+				if (i==currentPauseSelection) {
+					g.setColor(green);
+				}
+				else{
+					g.setColor(Color.WHITE);
+				}
+				g.setFont(new Font("TimesRoman", Font.PLAIN, Resize(30)));
+				g.drawString(pauseOptions[i], GamePanel.screenSize.width/2-(g.getFontMetrics().stringWidth(pauseOptions[i])/2), (GamePanel.screenSize.height/2)-(Resize(50))+(i*(GamePanel.screenSize.height/10)));
+	
+			}
+			g.setColor(Color.WHITE);
+			g.setFont(new Font("TimesRoman", Font.PLAIN, Resize(100)));
+			g.drawString("Pause", GamePanel.screenSize.width/2-(g.getFontMetrics().stringWidth("Pause")/2), (GamePanel.screenSize.height/2)-(Resize(250)));
+		}
+		if(win){
+			g.setColor(new Color(0,0,0,150));
+			g.fillRect(0, 0, GamePanel.screenSize.width, GamePanel.screenSize.height);
+			
+			g.setColor(new Color(50,56,68));
+			g.fillRect(0, (GamePanel.screenSize.height/2)-Resize(400), GamePanel.screenSize.width, Resize(800));
+
+			g.setColor(Color.WHITE);
+			g.setFont(new Font("TimesRoman", Font.PLAIN, Resize(100)));
+			g.drawString("Gewonnen", GamePanel.screenSize.width/2-(g.getFontMetrics().stringWidth("Gewonnen")/2), (GamePanel.screenSize.height/2)-(Resize(250)));
+			g.setFont(new Font("TimesRoman", Font.PLAIN, Resize(30)));
+			g.drawString("Drücke irgendeine Taste zum fortfahren", GamePanel.screenSize.width/2-(g.getFontMetrics().stringWidth("Drücke irgendeine Taste zum fortfahren")/2), (GamePanel.screenSize.height/2));
+		}
 	}
 
 	@Override
 	public void keyPressed(int k) {
-		if (k==KeyEvent.VK_UP||k==KeyEvent.VK_W) {
-			if (currentHeightPos==0) {
-				currentHeightPos=3;
-			}
-			else{
-				currentHeightPos--;
-			}
-		}
-		else if(k==KeyEvent.VK_DOWN||k==KeyEvent.VK_S){
-			if (currentHeightPos==3) {
-				currentHeightPos=0;
-			}
-			else{
-				currentHeightPos++;
-			}
-		}
-		else if(k==KeyEvent.VK_LEFT||k==KeyEvent.VK_A){
-			if (currentWidthPos==0) {
-				currentWidthPos=3;
-			}
-			else{
-				currentWidthPos--;
-			}
-		}
-		else if(k==KeyEvent.VK_RIGHT||k==KeyEvent.VK_D){
-			if (currentWidthPos==3) {
-				currentWidthPos=0;
-			}
-			else{
-				currentWidthPos++;
-			}
-		}
-		else if(k==KeyEvent.VK_ENTER||k==KeyEvent.VK_SPACE){
-			for (int i = 0; i < karten.size(); i++) {
-				if (karten.get(i).heightpos==currentHeightPos&&karten.get(i).widthpos==currentWidthPos) {
-					if (karten.get(i).flipped==true) {
-						error = true;
-					}
-					else{
-						if (activeCards==0) {
-							karten.get(i).flipped=true;
-							card1 = karten.get(i);
-							activeCards++;
-						}
-						else if(activeCards==1){
-							karten.get(i).flipped=true;
-							activeCards++;
-							if (card1.name.replace("Text", "").replace("Siegel", "").equals(karten.get(i).name.replace("Text", "").replace("Siegel", ""))) {
-								match = 1;
-								card2 = karten.get(i);
-							}
-							else{
-								match = 2;
-								card2 = karten.get(i);
-							
-							}
-							
-						}
-						else{
-							error = true;
-						}
-					}
-					
+		if (!pause) {
+			if (k==KeyEvent.VK_UP||k==KeyEvent.VK_W) {
+				if (currentHeightPos==0) {
+					currentHeightPos=3;
+				}
+				else{
+					currentHeightPos--;
 				}
 			}
+			else if(k==KeyEvent.VK_DOWN||k==KeyEvent.VK_S){
+				if (currentHeightPos==3) {
+					currentHeightPos=0;
+				}
+				else{
+					currentHeightPos++;
+				}
+			}
+			else if(k==KeyEvent.VK_LEFT||k==KeyEvent.VK_A){
+				if (currentWidthPos==0) {
+					currentWidthPos=3;
+				}
+				else{
+					currentWidthPos--;
+				}
+			}
+			else if(k==KeyEvent.VK_RIGHT||k==KeyEvent.VK_D){
+				if (currentWidthPos==3) {
+					currentWidthPos=0;
+				}
+				else{
+					currentWidthPos++;
+				}
+			}
+			else if(k==KeyEvent.VK_ENTER||k==KeyEvent.VK_SPACE){
+				for (int i = 0; i < karten.size(); i++) {
+					if (karten.get(i).heightpos==currentHeightPos&&karten.get(i).widthpos==currentWidthPos) {
+						if (karten.get(i).flipped==true) {
+							error = true;
+						}
+						else{
+							if (activeCards==0) {
+								karten.get(i).flipped=true;
+								card1 = karten.get(i);
+								activeCards++;
+							}
+							else if(activeCards==1){
+								karten.get(i).flipped=true;
+								activeCards++;
+								if (card1.name.replace("Text", "").replace("Siegel", "").equals(karten.get(i).name.replace("Text", "").replace("Siegel", ""))) {
+									match = 1;
+									card2 = karten.get(i);
+								}
+								else{
+									match = 2;
+									card2 = karten.get(i);
+								
+								}
+								
+							}
+							else{
+								error = true;
+							}
+						}
+						
+					}
+				}
+			}
+			if(win){
+				gsm.states.pop();
+			}
+			if(k==KeyEvent.VK_ESCAPE){
+				pause = true;
+			}
 		}
+		else if(pause){
+			if (k==KeyEvent.VK_UP||k==KeyEvent.VK_W) {
+				if (currentPauseSelection==0) {
+					currentPauseSelection=1;
+				}
+				else{
+					currentPauseSelection--;
+				}
+			}
+			else if(k==KeyEvent.VK_DOWN||k==KeyEvent.VK_S){
+				if (currentPauseSelection==1) {
+					currentPauseSelection=0;
+				}
+				else{
+					currentPauseSelection++;
+				}
+			}
+			else if(k==KeyEvent.VK_ENTER){
+				if (currentPauseSelection==0) {
+					pause=false;
+				}
+				else{
+					gsm.states.pop();
+				}
+			}
+			else if(k==KeyEvent.VK_ESCAPE){
+				pause = false;
+			}
+		}
+		
+		
 		
 	}
 
