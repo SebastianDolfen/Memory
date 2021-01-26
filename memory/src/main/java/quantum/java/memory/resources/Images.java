@@ -31,6 +31,8 @@ public class Images {
         addImage("PefcSiegel", "PefcSiegel.png");
         addImage("PefcText", "PefcText.png");
         addImage("Rückseite","Rueckseite.png");
+        addImage("Pfeiltasten","Pfeiltasten.png");
+        addImage("ESC","ESC.png");
     }
 
     private void addImage(String name,String data){

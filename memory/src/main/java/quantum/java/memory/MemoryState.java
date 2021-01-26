@@ -7,6 +7,7 @@ import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.awt.*;
 
 import quantum.java.memory.resources.Images;
 
@@ -17,8 +18,15 @@ public class MemoryState extends GameState{
 
 	int currentWidthPos = 0;
 	int currentHeightPos = 0;
+	
+	int tickTimer = 0;
+	int secTimer = 0;
+	int minTimer = 0;
 
 	Images images;
+
+	Image controls;
+
 	List<Karte> karten;
 	List<Karte> foundCards = new ArrayList<Karte>();
 
@@ -46,7 +54,9 @@ public class MemoryState extends GameState{
 
 	@Override
 	public void init() {
+
 		images = new Images();
+
 		List<String> names = new ArrayList<String>();
 		names.add("BlauerEngelSiegel");
 		names.add("BlauerEngelText");
@@ -65,6 +75,8 @@ public class MemoryState extends GameState{
 		names.add("PefcSiegel");
 		names.add("PefcText");
 
+		controls = images.images.get("ESC").getScaledInstance(Resize(325), Resize(178), 4);
+		
 		Collections.shuffle(names);
 
 		//{Resize(-400),Resize(0),Resize(400),Resize(800)};
@@ -133,6 +145,19 @@ public class MemoryState extends GameState{
 		if (restCards==0) {
 			win = true;
 		}
+		if(!pause){
+			if (tickTimer<59) {
+				tickTimer++;
+			}
+			else{
+				secTimer++;
+				tickTimer=0;
+			}
+			if (secTimer==60) {
+				secTimer=0;
+				minTimer++;
+			}
+		}
 	}
 
 	@Override
@@ -149,6 +174,17 @@ public class MemoryState extends GameState{
         for (int i = 0; i < karten.size(); i++) {
 			karten.get(i).draw(g);
 		}
+		g.setColor(Color.white);
+		g.setFont(new Font("TimesRoman", Font.PLAIN, Resize(30)));
+		if (secTimer>=10) {
+			g.drawString(minTimer+":"+secTimer, Resize(300), GamePanel.screenSize.height/2);
+		}
+		else{
+			g.drawString(minTimer+":0"+secTimer, Resize(300), GamePanel.screenSize.height/2);
+		}
+		
+		g.drawImage(controls, 0, 0, null);
+		
 		if(pause){
 			g.setColor(new Color(0,0,0,150));
 			g.fillRect(0, 0, GamePanel.screenSize.width, GamePanel.screenSize.height);

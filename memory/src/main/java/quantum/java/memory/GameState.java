@@ -1,6 +1,9 @@
 package quantum.java.memory;
 
 import java.awt.Graphics;
+
+import quantum.java.memory.resources.Images;
+
 import java.awt.Color;
 
 public abstract class GameState {
