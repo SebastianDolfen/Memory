@@ -22,7 +22,7 @@ public class MenuState extends GameState {
 	public void init() {
 		images = new Images();
 
-		controls = images.images.get("Pfeiltasten").getScaledInstance(Resize(325), Resize(178), 4);
+		controls = images.images.get("Pfeiltasten").getScaledInstance((int)Resize(325), (int)Resize(178), 4);
 
 	}
 

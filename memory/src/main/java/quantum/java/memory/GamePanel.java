@@ -18,7 +18,7 @@ public class GamePanel extends JPanel implements Runnable, KeyListener {
     private int FPS = 60;
     private long targetTime = 1000 / FPS;
 
-    private GameStateManager gsm;
+    private GameStateManager gsm = new GameStateManager();
 
     public GamePanel() {
         setPreferredSize(screenSize);
@@ -35,8 +35,6 @@ public class GamePanel extends JPanel implements Runnable, KeyListener {
 
     public void run() {
         long start, elapsed, wait;
-
-        gsm = new GameStateManager();
 
         while(isRunning) {
             start = System.nanoTime();
@@ -66,7 +64,7 @@ public class GamePanel extends JPanel implements Runnable, KeyListener {
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
 
-        g.clearRect(0, 0, WIDTH, HEIGHT);
+        g.clearRect(0, 0, screenSize.width, screenSize.height);
 
         gsm.draw(g);
     }

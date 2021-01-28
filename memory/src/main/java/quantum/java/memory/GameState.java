@@ -23,7 +23,8 @@ public abstract class GameState {
     public abstract void keyReleased(int k);
 
     public int Resize(int size){
-		return size*(GamePanel.screenSize.width/2560);
+        double screen = GamePanel.screenSize.width;
+		return (int) (size*(screen/2560));
 		
 	}
 
