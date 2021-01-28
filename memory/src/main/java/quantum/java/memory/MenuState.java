@@ -36,7 +36,7 @@ public class MenuState extends GameState {
         g.setColor(new Color(37, 42, 51));
 		g.fillRect(0, 0, GamePanel.screenSize.width, GamePanel.screenSize.height);
 		g.setColor(Color.WHITE);
-		g.setFont(new Font("TimesRoman", Font.PLAIN, 150));
+		g.setFont(new Font("TimesRoman", Font.PLAIN, Resize(100)));
 		g.drawImage(controls,(GamePanel.screenSize.width-controls.getWidth(null))-50,(GamePanel.screenSize.height-controls.getHeight(null))-50,null);
 		g.drawString("Memory", GamePanel.screenSize.width/2-(g.getFontMetrics().stringWidth("Memory")/2), GamePanel.screenSize.height/4-(Resize(100)));
 		for (int i = 0; i < options.length; i++) {
